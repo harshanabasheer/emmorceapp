@@ -13,8 +13,12 @@ class ApiServices{
     var fullurl=Apiconstants.baseurl + apiurl;
     return await http.put(Uri.parse(fullurl),body: data);
   }
-  deletedata(data,apiurl)async{
+  deletedata(apiurl)async{
     var fullurl=Apiconstants.baseurl + apiurl;
-    return await http.delete(Uri.parse(fullurl),body: data);
+    return await http.delete(Uri.parse(fullurl));
+  }
+  postdata_accept(apiurl)async {
+    var fullurl = Apiconstants.baseurl + apiurl;
+    return await http.post(Uri.parse(fullurl));
   }
 }

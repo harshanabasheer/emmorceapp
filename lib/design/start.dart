@@ -32,9 +32,7 @@ class _WelcomeState extends State<Welcome> {
                 backgroundColor: Colors.yellow,
                 backgroundImage: AssetImage('images/icon.jpeg'),
               ),
-
               SizedBox(height: 100,),
-
               Padding(
                 padding: const EdgeInsets.only(left:40.0,right: 40),
                 child: ElevatedButton(onPressed: (){

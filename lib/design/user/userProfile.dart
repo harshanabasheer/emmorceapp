@@ -1,8 +1,10 @@
+import 'package:emmorceapp/design/start.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:emmorceapp/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,6 +18,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController emailController = TextEditingController();
   String name = "";
   String email = "";
+  bool isLoding=true;
+
+  // final FirebaseAuth auth = FirebaseAuth.instance;
+  // //signout function
+  // signOut(BuildContext context) async {
+  //   await auth.signOut();
+  //   Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()));
+  // }
+  //
 
   @override
   void initState() {
@@ -34,6 +45,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       email = body['data']['Email'];
       nameController.text = name;
       emailController.text = email;
+      isLoding =false;
+
     });
   }
 
@@ -47,12 +60,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         title: Text("My Profile"),
       ),
-      body: SingleChildScrollView(
+      body:isLoding?Center(child: CircularProgressIndicator(),):SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              // Profile Image
               Stack(
                 children: [
                   SizedBox(
@@ -86,8 +98,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Text(name, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               Text(email, style: TextStyle(color: Colors.grey)),
               const SizedBox(height: 20),
-
-              // Edit Profile Button
               SizedBox(
                 width: 200,
                 child: ElevatedButton(
@@ -104,23 +114,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-
-              // Divider
               const Divider(),
               const SizedBox(height: 10),
-
-              // Profile Menu
               ProfileMenuItem(title: "Order History", icon: Icons.receipt, onTap: () {}),
               ProfileMenuItem(title: "Shipping Address", icon: Icons.location_on, onTap: () {}),
               ProfileMenuItem(title: "Payment Methods", icon: Icons.credit_card, onTap: () {}),
               ProfileMenuItem(title: "Contact Us", icon: Icons.mail, onTap: () {}),
               const Divider(),
               const SizedBox(height: 10),
-
               // Logout Button
-              ProfileMenuItem(title: "Logout", icon: Icons.exit_to_app, textColor: Colors.red, onTap: () {
-
-                },
+              ProfileMenuItem(title: "Logout", icon: Icons.exit_to_app, textColor: Colors.red,
+                onTap: () {
+                // signOut(context);
+              },
               ),
             ],
           ),

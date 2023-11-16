@@ -1,11 +1,15 @@
 import 'dart:async';
 
-import 'package:emmorceapp/design/user/homepage.dart';
+import 'package:emmorceapp/design/seller/sellerHome.dart';
+import 'package:emmorceapp/design/start.dart';
+import 'package:emmorceapp/design/user/userHome.dart';
 import 'package:flutter/material.dart';
 import 'package:emmorceapp/design/login.dart';
 import 'package:emmorceapp/design/signup.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'admin/adminHome.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,12 +27,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void>checkRoleAndNavigate()async{
     localStorage = await SharedPreferences.getInstance();
     role = (localStorage.getString("role")??'');
-    if(role == user){
+
+    if(role.isEmpty){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Welcome()));
+    }else if(role == user){
       Navigator.pushReplacement(context,PageTransition(child: const HomePage(), type: PageTransitionType.bottomToTop));
-    }else if(role==admin){
-      Text("Admin");
+    }else if(role == admin){
+      Navigator.pushReplacement(context,PageTransition(child: const AdminHome(), type: PageTransitionType.bottomToTop));
     }else{
-      Text("seller");
+      Navigator.pushReplacement(context,PageTransition(child: const SellerHome(), type: PageTransitionType.bottomToTop));
+
     }
   }
   void initState(){

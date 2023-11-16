@@ -5,7 +5,7 @@ import 'package:emmorceapp/design/login.dart';
 import 'package:emmorceapp/constants/constants.dart';
 import 'package:emmorceapp/services/authdata.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:emmorceapp/model/sellermodel.dart';
+import 'package:emmorceapp/model/sellerModel.dart';
 
 Future<SellerModel>registerSeller({required BuildContext context,
   required String name,required String address,required String dateofbirth,
@@ -18,7 +18,6 @@ Future<SellerModel>registerSeller({required BuildContext context,
     "Email":email,
     "Password":password,
   };
-  print('data $data');
   try{
     var response = await ApiServices().postdata(data,Apiconstants.seller_reg);
     var body = json.decode(response.body);

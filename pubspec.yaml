@@ -39,6 +39,13 @@ dependencies:
   http: ^1.1.0
   shared_preferences: ^2.2.2
   page_transition: ^2.1.0
+  flutter_rating_bar: ^4.0.0
+  carousel_slider: ^4.0.0
+  flutter_custom_clippers: ^2.0.0
+  image_picker: ^1.0.4
+  draggable_fab: ^0.1.1
+  firebase_auth: ^4.10.0
+  firebase_core: ^2.16.0
 
 dev_dependencies:
   flutter_test:

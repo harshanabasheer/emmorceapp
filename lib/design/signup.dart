@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:emmorceapp/design/user/usersignup.dart';
-import 'package:emmorceapp/design/seller/sellersignup.dart';
+import 'package:emmorceapp/design/user/userSignup.dart';
+import 'package:emmorceapp/design/seller/sellerSignup.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -32,9 +32,7 @@ class _SignUpState extends State<SignUp> {
                 backgroundColor: Colors.yellow,
                 backgroundImage: AssetImage('images/icon.jpeg'),
               ),
-
               SizedBox(height: 100,),
-
               Padding(
                 padding: const EdgeInsets.only(left:40.0,right: 40),
                 child: ElevatedButton(onPressed: (){

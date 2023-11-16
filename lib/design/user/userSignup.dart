@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:emmorceapp/services/sellerservices.dart';
+import 'package:emmorceapp/services/userService.dart';
 
-
-
-class SellerSignUp extends StatefulWidget {
-  const SellerSignUp({super.key});
+class UserSignUp extends StatefulWidget {
+  const UserSignUp({super.key});
 
   @override
-  State<SellerSignUp> createState() => _SellerSignUpState();
+  State<UserSignUp> createState() => _UserSignUpState();
 }
 
-class _SellerSignUpState extends State<SellerSignUp> {
+class _UserSignUpState extends State<UserSignUp> {
   TextEditingController _dateController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
@@ -192,28 +190,25 @@ class _SellerSignUpState extends State<SellerSignUp> {
                   Padding(
                     padding: const EdgeInsets.only(left:40.0,right: 40),
                     child: ElevatedButton(onPressed: (){
-                      registerSeller(context: context, name: _nameController.text, address: _addressController.text,
+                      registerUser(context: context, name: _nameController.text, address: _addressController.text,
                           dateofbirth: _dateController.text, phone: _phoneController.text,
                           email: _emailController.text, password: _passwordController.text);
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
                     },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.yellow,minimumSize: const Size.fromHeight(50), //
+                        primary: Colors.yellow,minimumSize: const Size.fromHeight(50),
                         shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                       child: const Text('SignUp', style: TextStyle(fontSize: 15,color: Colors.black),),
                     ),
                   ),
-
-
                 ],
               ),
             ),
           ),
         ),
       ),
-
     );
   }
 }

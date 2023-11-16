@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:emmorceapp/design/start.dart';
+import 'design/splash.dart';
 
 
 void main() {
@@ -15,12 +15,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      theme:  ThemeData(
+        primaryColor: Colors.deepPurple,
+        hintColor: Colors.cyan[600],
+        fontFamily: 'Roboto',
+        textTheme: TextTheme(
+          headline1: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+          headline2: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          bodyText1: TextStyle(fontSize: 16),
+          bodyText2: TextStyle(fontSize: 14),
+        ),
       ),
-      home: const Welcome(),
+      home: const SplashScreen(),
+
     );
   }
 }

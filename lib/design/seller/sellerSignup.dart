@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:emmorceapp/services/userservice.dart';
+import 'package:emmorceapp/services/sellerServices.dart';
 
 
 
-class UserSignUp extends StatefulWidget {
-  const UserSignUp({super.key});
+class SellerSignUp extends StatefulWidget {
+  const SellerSignUp({super.key});
 
   @override
-  State<UserSignUp> createState() => _UserSignUpState();
+  State<SellerSignUp> createState() => _SellerSignUpState();
 }
 
-class _UserSignUpState extends State<UserSignUp> {
+class _SellerSignUpState extends State<SellerSignUp> {
   TextEditingController _dateController = TextEditingController();
 
   Future<void> _selectDate(BuildContext context) async {
@@ -192,7 +192,7 @@ class _UserSignUpState extends State<UserSignUp> {
                   Padding(
                     padding: const EdgeInsets.only(left:40.0,right: 40),
                     child: ElevatedButton(onPressed: (){
-                      registerUser(context: context, name: _nameController.text, address: _addressController.text,
+                      registerSeller(context: context, name: _nameController.text, address: _addressController.text,
                           dateofbirth: _dateController.text, phone: _phoneController.text,
                           email: _emailController.text, password: _passwordController.text);
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));

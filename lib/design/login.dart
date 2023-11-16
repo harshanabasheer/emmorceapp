@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:emmorceapp/design/user/homepage.dart';
-import 'package:emmorceapp/services/loginservice.dart';
+import 'package:emmorceapp/design/user/userHome.dart';
+import 'package:emmorceapp/services/loginService.dart';
 
 
 
@@ -14,6 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _usernameController=TextEditingController();
   TextEditingController _passwordController=TextEditingController();
+  bool isLoading=true;
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +71,22 @@ class _LoginState extends State<Login> {
               SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.only(left:40.0,right: 40),
-                child: ElevatedButton(onPressed: (){
-                  Api().login(context: context, username: _usernameController.text, password: _passwordController.text);
+                child: ElevatedButton(onPressed: () async{
+                 try{
+                   isLoading=false;
+                   setState(() {
+                   });
+                   await Api().login(context: context, username: _usernameController.text, password: _passwordController.text);
+                   isLoading=true;
+                   setState(() {
+                   });
+                 }catch(e){
+                   isLoading=true;
+                   setState(() {
+
+                   });
+                   print("error");
+                 }
 
                 },
                   style: ElevatedButton.styleFrom(
@@ -80,7 +95,7 @@ class _LoginState extends State<Login> {
 
                     ),
                   ),
-                  child: const Text('Login', style: TextStyle(fontSize: 15,color: Colors.black),),
+                  child:isLoading==false?Center(child: CircularProgressIndicator(),): const Text('Login', style: TextStyle(fontSize: 15,color: Colors.black),),
                 ),
               ),
 
