@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:emmorceapp/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:emmorceapp/design/user/listview.dart';
 import 'package:emmorceapp/design/user/grid.dart';
@@ -19,25 +16,23 @@ class _HomePageState extends State<HomePage> {
   void closeAppUsingSystemPop() {
     SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
-  // TextEditingController searchController = TextEditingController();
-  // bool isSearching = false;
-  // Future<void> searchData(String query) async {
-  //   try {
-  //     final response = await http.post(Uri.parse(Apiconstants.baseurl + Apiconstants.search_product ),
-  //       body: {'query': query},
-  //     );
-  //     if (response.statusCode == 200) {
-  //       Map<String, dynamic> responseData = json.decode(response.body);
-  //       List<dynamic> data = responseData['data'];
-  //       print(data);
-  //     } else {
-  //       print('Error: ${response.statusCode}');
-  //     }
-  //   } catch (e) {
-  //     print('Exception: $e');
-  //   }
-  // }
+  ValueNotifier<String> searchNotifier = ValueNotifier<String>('');
+  TextEditingController searchController = TextEditingController();
+  bool isSearching=false;
 
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      searchNotifier.value = searchController.text;
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,37 +65,39 @@ class _HomePageState extends State<HomePage> {
     },
     child:Scaffold(
       appBar: AppBar(
-        title: Text("E-COMMERCE"),
-      titleSpacing: 00.0,
-      centerTitle: true,
-      toolbarHeight: 60.2,
-      toolbarOpacity: 0.8,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(25),
-            bottomLeft: Radius.circular(25)),
-      ),
-      elevation: 0.00,
-      backgroundColor: Colors.blueAccent,
-        actions:  [
-          CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.grey,
-              child: IconButton(
-                onPressed: () {
-                  // searchData(searchController.text);
-                },
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              )
-
+        title: !isSearching
+            ? Text('E-COMMERCE')
+            : TextField(
+          controller: searchController,
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            icon: Icon(Icons.search, color: Colors.white),
+            hintText: "Search here...",
+            hintStyle: TextStyle(color: Colors.white),
           ),
+        ),
+        actions: [
+          isSearching
+              ? IconButton(
+            icon: Icon(Icons.cancel),
+            onPressed: () {
+              setState(() {
+                this.isSearching = false;
+                searchController.clear();
+              });
+            },
+          )
+              : IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              setState(() {
+                this.isSearching = true;
+              });
+            },
+          )
         ],
-    ),
-      backgroundColor: Colors.white,
-      body: const Padding(
+      ),
+      body:  Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(
           children: [
@@ -109,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                 child: CircleList()),
             Expanded(
                 flex: 6,
-                child: Grid()),
+                child: Grid(searchNotifier: searchNotifier)),
           ],
         ),
       ),

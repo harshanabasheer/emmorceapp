@@ -23,7 +23,7 @@ class _LoginState extends State<Login> {
         width: double.maxFinite,
         decoration:BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("images/background.jpeg"),fit: BoxFit.cover
+              image: AssetImage("images/background.jpg"),fit: BoxFit.cover
           ),
         ),
         child: Padding(
@@ -31,20 +31,13 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.yellow,
-                backgroundImage: AssetImage('images/icon.jpeg'),
-              ),
-
-              SizedBox(height: 100,),
               Padding(
                   padding: const EdgeInsets.only(left:40.0,right: 40),
                   child:TextFormField(
                     controller: _usernameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.black),
+                        borderSide: BorderSide(width: 2, color: Colors.black),
                       ),
                       hintText: "User Name",
                       prefixIcon: Icon(Icons.email_outlined),
@@ -59,7 +52,7 @@ class _LoginState extends State<Login> {
                     obscureText: true,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.black),
+                        borderSide: BorderSide(width: 2, color: Colors.black),
                       ),
                       hintText: "Password",
                       prefixIcon: Icon(Icons.password),
@@ -90,12 +83,12 @@ class _LoginState extends State<Login> {
 
                 },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.yellow,minimumSize: const Size.fromHeight(50), //
+                    primary: Colors.lightBlueAccent,minimumSize: const Size.fromHeight(50), //
                     shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),
 
                     ),
                   ),
-                  child:isLoading==false?Center(child: CircularProgressIndicator(),): const Text('Login', style: TextStyle(fontSize: 15,color: Colors.black),),
+                  child:isLoading==false?Center(child: CircularProgressIndicator(),): const Text('Login', style: TextStyle(fontSize: 15,color: Colors.white),),
                 ),
               ),
 

@@ -55,7 +55,6 @@ class AddCategoryApi {
     var response = await ApiServices().getdata(Apiconstants.all_category);
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
-      print("category${body}");
       List<AddCategoryModel>_data=List<AddCategoryModel>.from(body['data'].map((e)=>AddCategoryModel.fromJson(e)).toList());
      // CategoryListModel _data = CategoryListModel.fromJson(body);
       return _data;
@@ -82,7 +81,6 @@ class ViewAllCategory {
     var response = await ApiServices().getdata(Apiconstants.all_category);
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
-      print(body);
       CategoryListModel _data = CategoryListModel.fromJson(body);
       return _data;
     } else {

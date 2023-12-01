@@ -1,5 +1,5 @@
 class Apiconstants{
-  static const baseurl='https://3c0b-103-175-89-133.ngrok-free.app';
+  static const baseurl='https://d54e-117-222-162-140.ngrok-free.app';
   // static const baseurl='http://127.0.0.1:8000';
   static const login='/api/Login';
   static const admin_reg='/api/AdminReg';
@@ -27,6 +27,15 @@ class Apiconstants{
   static const cart_list='/api/GetAllCart';
   static const delete_cart='/api/DeleteCart/';
   static const search_product='/api/Searchdata';
+  static const total_price='/api/TotalPrice/';
+  static const order_cart_products='/api/PlaceOrder';
+  static const delete_all_cart='/api/DeleteAllCart/';
+  static const order_single_product='/api/PlaceOrderSingle';
+  static const payment_function='/api/Payment';
+  static const total_amount_payment='/api/GetOneOrder/';
+  static const all_review='/api/GetAllReviews';
+  static const one_review='/api/GetOneReview/';
+  static const all_orders='/api/GetAllOrder';
 
 
 

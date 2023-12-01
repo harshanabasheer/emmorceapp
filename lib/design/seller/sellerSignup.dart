@@ -41,7 +41,7 @@ class _SellerSignUpState extends State<SellerSignUp> {
         height: double.maxFinite,
         decoration:BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("images/background.jpeg"),fit: BoxFit.cover
+              image: AssetImage("images/background.jpg"),fit: BoxFit.cover
           ),
         ),
         child: Padding(
@@ -53,12 +53,7 @@ class _SellerSignUpState extends State<SellerSignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.yellow,
-                    backgroundImage: AssetImage('images/icon.jpeg'),
-                  ),
-                  SizedBox(height: 40,),
+                  SizedBox(height: 100,),
                   Padding(
                       padding: const EdgeInsets.only(left:40.0,right: 40),
                       child: // Note: Same code is applied for the TextFormField as well
@@ -198,11 +193,11 @@ class _SellerSignUpState extends State<SellerSignUp> {
                       // Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
                     },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.yellow,minimumSize: const Size.fromHeight(50), //
+                        primary: Colors.lightBlueAccent,minimumSize: const Size.fromHeight(50), //
                         shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      child: const Text('SignUp', style: TextStyle(fontSize: 15,color: Colors.black),),
+                      child: const Text('SignUp', style: TextStyle(fontSize: 15,color: Colors.white),),
                     ),
                   ),
 

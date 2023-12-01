@@ -39,38 +39,44 @@ class _WhishListPageState extends State<WhishListPage> {
                 itemCount: snapshot.data?.data?.length,
                 itemBuilder: (BuildContext context, int index) {
                   var data=snapshot.data!.data![index];
-                  return Card(
-                    child: ListTile(
-                      leading:
-                      Container(
-                        height: 150,
-                        width: 150,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage(Apiconstants.baseurl+data.productImage.toString()))
-                        ),
-                      ),
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(data.productName.toString()),
-                          Text("\$${data.price.toString()}"),
-                        ],
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                if (data.id != null) {
-                                  client.removeWhishlist(data.id!.toInt());
-                                }
-                              });
-                            },
-                            icon: Icon(Icons.close, size: 24.0,color: Colors.red,),
-                            label: Text('Remove',style: TextStyle(color: Colors.red),),
+                  return Container(
+                    height: 100,
+                    child: Card(
+                      child: ListTile(
+                        leading:
+                        Container(
+                          width: 100,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(image: NetworkImage(Apiconstants.baseurl+data.productImage.toString()))
                           ),
-                        ],
+                        ),
+                        title: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+
+                          children: [
+                            Text(data.productName.toString()),
+                            Text("\$${data.price.toString()}"),
+                          ],
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextButton.icon(
+                              onPressed: () {
+                                setState(() {
+                                  if (data.productId != null) {
+                                    int? parsedProductId = int.tryParse(data.productId!);
+                                    if (parsedProductId != null) {
+                                      client.removeWhishlist(parsedProductId);
+                                    }
+                                  }
+                                });
+                              },
+                              icon: Icon(Icons.close, size: 24.0,color: Colors.red,),
+                              label: Text('Remove',style: TextStyle(color: Colors.red),),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

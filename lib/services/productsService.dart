@@ -13,6 +13,7 @@ class ViewAllProducts {
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
       AllProducts _data = AllProducts.fromJson(body);
+
       return _data;
     } else {
       throw Exception('failed to load');

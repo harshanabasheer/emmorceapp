@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:emmorceapp/constants/constants.dart';
+import 'package:emmorceapp/design/bottombar.dart';
 import 'package:emmorceapp/model/cartModel.dart';
 import 'authdata.dart';
 
@@ -11,6 +12,7 @@ class CartList {
     if(body["success"]==true){
       var body = json.decode(response.body);
       CartItems _data = CartItems.fromJson(body);
+      cartLengthNotify.value  = _data.data!.length;
       return _data;
     } else {
       throw Exception('failed to load');
@@ -28,5 +30,7 @@ class CartList {
       throw Exception('failed to load');
     }
   }
+
+
 
 }

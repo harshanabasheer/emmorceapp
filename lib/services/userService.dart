@@ -18,11 +18,9 @@ required String name,required String address,required String dateofbirth,
     "Email":email,
     "Password":password,
   };
-  print('data $data');
   try{
     var response = await ApiServices().postdata(data,Apiconstants.user_reg);
     var body = json.decode(response.body);
-    print(body);
     if(body["success"]==true){
       Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
       return UserModel.fromJson(jsonDecode(response.body));

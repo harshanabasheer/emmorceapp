@@ -7,7 +7,6 @@ class Whishlist {
   Future<AllWishlist> getAllWhishlist() async {
     var response = await ApiServices().getdata(Apiconstants.all_whishlist);
     var body = json.decode(response.body);
-    print("body{$body}");
     if(body["success"]==true){
       var body = json.decode(response.body);
       AllWishlist _data = AllWishlist.fromJson(body);

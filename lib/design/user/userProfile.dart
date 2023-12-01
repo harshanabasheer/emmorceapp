@@ -1,10 +1,10 @@
-import 'package:emmorceapp/design/start.dart';
+import 'package:emmorceapp/design/login.dart';
+import 'package:emmorceapp/design/user/orderList.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:emmorceapp/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -19,14 +19,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String name = "";
   String email = "";
   bool isLoding=true;
-
-  // final FirebaseAuth auth = FirebaseAuth.instance;
-  // //signout function
-  // signOut(BuildContext context) async {
-  //   await auth.signOut();
-  //   Navigator.push(context, MaterialPageRoute(builder: (context) => Welcome()));
-  // }
-  //
 
   @override
   void initState() {
@@ -116,7 +108,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 30),
               const Divider(),
               const SizedBox(height: 10),
-              ProfileMenuItem(title: "Order History", icon: Icons.receipt, onTap: () {}),
+              ProfileMenuItem(title: "Order History", icon: Icons.receipt, onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                      OrderListPage()),
+                );
+              }),
               ProfileMenuItem(title: "Shipping Address", icon: Icons.location_on, onTap: () {}),
               ProfileMenuItem(title: "Payment Methods", icon: Icons.credit_card, onTap: () {}),
               ProfileMenuItem(title: "Contact Us", icon: Icons.mail, onTap: () {}),
@@ -124,10 +123,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const SizedBox(height: 10),
               // Logout Button
               ProfileMenuItem(title: "Logout", icon: Icons.exit_to_app, textColor: Colors.red,
-                onTap: () {
-                // signOut(context);
-              },
+                onTap: () async {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  await prefs.clear();
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                        (Route<dynamic> route) => false,
+                  );
+                },
               ),
+
             ],
           ),
         ),
